@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController  } from '@angular/common/http/testing';
 import { PizzasService } from './pizzas.service';
 import { Pizza } from '../models/pizza.model';
