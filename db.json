@@ -53,7 +53,7 @@
       "id": 8
     },
     {
-      "name": "My Favorite",
+      "name": "Marguerita",
       "toppings": [
         "anchovy",
         "bacon",
@@ -63,7 +63,8 @@
       "id": 9
     },
     {
-      "id": 10
+      "id": 10,
+      "name": "Napolitana"
     }
   ]
 }

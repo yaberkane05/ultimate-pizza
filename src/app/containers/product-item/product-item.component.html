@@ -1,4 +1,3 @@
 <div class="product-item">
-      <pizza-form>
-      </pizza-form>
-    </div>
+    <pizza-form [pizza]="pizza" (update)="updatePizza($event)"> </pizza-form>
+</div>

@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
+import { FormsModule } from '@angular/forms'
 import { AppComponent } from './containers/app/app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { ProductItemComponent } from './containers/product-item/product-item.component';
@@ -18,6 +18,8 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
+    HttpClientModule,
+    FormsModule,
   ],
   declarations: [
     AppComponent,

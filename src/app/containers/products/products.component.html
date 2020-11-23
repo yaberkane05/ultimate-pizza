@@ -1,16 +1,11 @@
-<div class="products" >
+<div class="products">
     <div class="products__new">
-      <a class="btn btn__ok" href="./new">
-        New Pizza
-      </a>
+        <a class="btn btn__ok" [routerLink]="'/new'"> New Pizza </a>
     </div>
     <div class="products__list">
-      <div>
-        No pizzas, add one to get started.
-      </div>
-      <pizza-item></pizza-item>
-      <pizza-item></pizza-item>
-      <pizza-item></pizza-item>
-      <pizza-item></pizza-item>
+        <div *ngIf="!pizzas">No pizzas, add one to get started.</div>
+        <div *ngFor="let pizza of pizzas">
+            <pizza-item [pizza]="pizza"></pizza-item>
+        </div>
     </div>
-  </div> 
+</div>

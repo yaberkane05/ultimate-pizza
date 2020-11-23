@@ -122,6 +122,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "pizzas"
+    }
+  },
+  "defaultProject": "pizzas",
+  "cli": {
+    "analytics": "d52eb290-1b57-4a38-9f1d-f7960e0921cd"
+  }
 }
