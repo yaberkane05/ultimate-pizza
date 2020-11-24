@@ -2,14 +2,17 @@ import { Injectable } from '@angular/core';
 
 import { Observable, of } from 'rxjs';
 import { Topping } from '../models/topping';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root',
 })
 export class ToppingsService {
-  constructor() {}
+    constructor(private httpClient: HttpClient) {}
 
-  getToppings(): Observable<Topping[]> {
-    return of(null)
-  }
+    url: string = 'http://localhost:3000/toppings';
+
+    getToppings(): Observable<Topping[]> {
+        return this.httpClient.get<Topping[]>(this.url);
+    }
 }

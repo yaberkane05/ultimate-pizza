@@ -1,9 +1,11 @@
 import { Component, Input, OnInit, Output } from '@angular/core';
 import { Pizza } from 'src/app/models/pizza.model';
 import { PizzasService } from '../../services/pizzas.service';
+import { ToppingsService } from '../../services/toppings.service';
 
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
+import { Topping } from 'src/app/models/topping';
 
 @Component({
     selector: 'product-item',
@@ -20,11 +22,14 @@ export class ProductItemComponent implements OnInit {
     id: any;
 
     @Output() pizza: Pizza;
+    @Output() toppings: string[] = [];
 
     getPizzaByID() {
         this.pizzaService.getPizzasById(this.id).subscribe((resPizza) => {
             if (resPizza) {
                 this.pizza = resPizza;
+            } else {
+                //do catch error
             }
         });
     }
@@ -32,13 +37,45 @@ export class ProductItemComponent implements OnInit {
     updatePizza(pizza: Pizza) {
         this.pizzaService.updatePizza(pizza).subscribe((res) => {
             if (res) {
-                console.log(res);
+                // do update success verification
+            } else {
             }
-        })
+        });
+    }
+
+    createPizza(pizza: Pizza) {
+        this.pizzaService.createPizza(pizza).subscribe((res) => {
+            if (res) {
+                // do create success verification
+            } else {
+            }
+        });
+    }
+
+    removePizza(pizza: Pizza) {
+        this.pizzaService.removePizza(pizza).subscribe((res) => {
+            if (res) {
+                // do delete success verification
+            } else {
+            }
+        });
+    }
+
+    getToppings() {
+        this.toppingsService.getToppings().subscribe((resToppings) => {
+            if (resToppings) {
+                resToppings.map((topping: Topping) => {
+                    this.toppings.push(topping.toString());
+                });
+            } else {
+                //do catch error
+            }
+        });
     }
 
     constructor(
         public pizzaService: PizzasService,
+        public toppingsService: ToppingsService,
         private Activatedroute: ActivatedRoute
     ) {}
 
@@ -48,5 +85,6 @@ export class ProductItemComponent implements OnInit {
                 if ((this.id = params.get('id'))) this.getPizzaByID();
             }
         });
+        this.getToppings();
     }
 }

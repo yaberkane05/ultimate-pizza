@@ -23,15 +23,15 @@ export class PizzasService {
         return this.http.get<Pizza>(this.url + id);
     }
 
-    createPizza(payload: Pizza): Observable<Pizza> {
-        return of(null);
+    createPizza(newPizza: Pizza): Observable<Pizza> {
+        return this.http.post<Pizza>(this.url, newPizza);
     }
 
     updatePizza(pizza: Pizza): Observable<Pizza> {
         return this.http.patch<Pizza>(this.url + pizza.id, pizza);
     }
 
-    removePizza(payload: Pizza): Observable<Pizza> {
-        return of(null);
+    removePizza(delPizza: Pizza): Observable<Pizza> {
+        return this.http.delete<Pizza>(this.url + delPizza.id);
     }
 }

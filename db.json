@@ -17,13 +17,10 @@
     {
       "name": "The Inferno DB",
       "toppings": [
-        "chili",
+        "bacon",
         "pepperoni",
-        "anchovy",
-        "mozzarella",
-        "pepper",
-        "tomato",
-        "sweetcorn"
+        "onion",
+        "chili"
       ],
       "id": 1,
       "sizes": []
@@ -31,40 +28,59 @@
     {
       "name": "Seaside Surfin'",
       "toppings": [
-        "mozzarella",
-        "mushroom",
-        "anchovy",
         "pepper",
-        "olive",
-        "onion",
-        "sweetcorn",
-        "tomato"
+        "tomato",
+        "basil",
+        "anchovy",
+        "onion"
       ],
       "id": 2
     },
     {
-      "name": "My Favorite",
+      "name": "Napolitana",
       "toppings": [
-        "anchovy",
-        "bacon",
-        "sweetcorn"
+        "basil",
+        "tomato",
+        "mozzarella"
       ],
       "sizes": [],
       "id": 8
     },
     {
-      "name": "Marguerita",
+      "name": "Bianca",
       "toppings": [
-        "anchovy",
-        "bacon",
-        "sweetcorn"
+        "basil",
+        "mozzarella",
+        "mushroom",
+        "onion"
       ],
       "sizes": [],
       "id": 9
     },
     {
       "id": 10,
-      "name": "Napolitana"
+      "name": "La Pizza Di Mama",
+      "toppings": [
+        "tomato",
+        "basil",
+        "olive",
+        "chili",
+        "mozzarella"
+      ]
+    },
+    {
+      "name": "Vegan",
+      "toppings": [
+        "tomato",
+        "basil",
+        "chili",
+        "onion",
+        "sweetcorn",
+        "mushroom",
+        "olive",
+        "pepper"
+      ],
+      "id": 12
     }
   ]
 }

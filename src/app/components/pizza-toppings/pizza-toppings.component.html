@@ -1,19 +1,119 @@
 <div class="pizza-toppings">
-      <div
+    <div
         class="pizza-toppings-item"
-        [class.active]="true">
-        <img src="/assets/img/toppings/singles/pepperoni.svg">
-         pepperoni
-      </div>
-      <div
-        class="pizza-toppings-item active">
-        <img src="/assets/img/toppings/singles/tomato.svg">
-         tomato
-      </div>
-      <div
-        class="pizza-toppings-item"
-        [class.active]="false">
-        <img src="/assets/img/toppings/singles/sweetcorn.svg">
-         sweetcorn
-      </div>
+        *ngIf="this.existsInToppings('pepperoni')"
+        [class.active]="existsInValues('pepperoni')"
+        (click)="selectTopping('pepperoni')"
+    >
+        <img src="/assets/img/toppings/singles/pepperoni.svg" />
+        pepperoni
     </div>
+    <div
+        class="pizza-toppings-item"
+        *ngIf="this.existsInToppings('tomato')"
+        [class.active]="existsInValues('tomato')"
+        (click)="selectTopping('tomato')"
+    >
+        <img src="/assets/img/toppings/singles/tomato.svg" />
+        tomato
+    </div>
+    <div
+        class="pizza-toppings-item"
+        *ngIf="this.existsInToppings('sweetcorn')"
+        [class.active]="existsInValues('sweetcorn')"
+        (click)="selectTopping('sweetcorn')"
+    >
+        <img src="/assets/img/toppings/singles/sweetcorn.svg" />
+        sweetcorn
+    </div>
+    <div
+        class="pizza-toppings-item"
+        *ngIf="this.existsInToppings('anchovy')"
+        [class.active]="existsInValues('anchovy')"
+        (click)="selectTopping('anchovy')"
+    >
+        <img src="/assets/img/toppings/singles/anchovy.svg" />
+        anchovy
+    </div>
+    <div
+        class="pizza-toppings-item"
+        *ngIf="this.existsInToppings('bacon')"
+        [class.active]="existsInValues('bacon')"
+        (click)="selectTopping('bacon')"
+    >
+        <img src="/assets/img/toppings/singles/bacon.svg" />
+        bacon
+    </div>
+    <div
+        class="pizza-toppings-item"
+        *ngIf="this.existsInToppings('basil')"
+        [class.active]="existsInValues('basil')"
+        (click)="selectTopping('basil')"
+    >
+        <img src="/assets/img/toppings/singles/basil.svg" />
+        basil
+    </div>
+    <div
+        class="pizza-toppings-item"
+        *ngIf="this.existsInToppings('chili')"
+        [class.active]="existsInValues('chili')"
+        (click)="selectTopping('chili')"
+    >
+        <img src="/assets/img/toppings/singles/chili.svg" />
+        chili
+    </div>
+    <div
+        class="pizza-toppings-item"
+        *ngIf="this.existsInToppings('mozzarella')"
+        [class.active]="existsInValues('mozzarella')"
+        (click)="selectTopping('mozzarella')"
+    >
+        <img src="/assets/img/toppings/singles/mozzarella.svg" />
+        mozzarella
+    </div>
+    <div
+        class="pizza-toppings-item"
+        *ngIf="this.existsInToppings('mushroom')"
+        [class.active]="existsInValues('mushroom')"
+        (click)="selectTopping('mushroom')"
+    >
+        <img src="/assets/img/toppings/singles/mushroom.svg" />
+        mushroom
+    </div>
+    <div
+        class="pizza-toppings-item"
+        *ngIf="this.existsInToppings('olive')"
+        [class.active]="existsInValues('olive')"
+        (click)="selectTopping('olive')"
+    >
+        <img src="/assets/img/toppings/singles/olive.svg" />
+        olive
+    </div>
+    <div
+        class="pizza-toppings-item"
+        *ngIf="this.existsInToppings('onion')"
+        [class.active]="existsInValues('onion')"
+        (click)="selectTopping('onion')"
+    >
+        <img src="/assets/img/toppings/singles/onion.svg" />
+        onion
+    </div>
+    <div
+        class="pizza-toppings-item"
+        *ngIf="this.existsInToppings('pepper')"
+        [class.active]="existsInValues('pepper')"
+        (click)="selectTopping('pepper')"
+    >
+        <img src="/assets/img/toppings/singles/pepper.svg" />
+        pepper
+    </div>
+    <div
+        class="pizza-toppings-item"
+        *ngIf="this.existsInToppings('prawn')"
+        [class.active]="existsInValues('prawn')"
+        (click)="selectTopping('prawn')"
+    >
+        <img src="/assets/img/toppings/singles/prawn.svg" />
+        prawn
+    </div>
+</div>

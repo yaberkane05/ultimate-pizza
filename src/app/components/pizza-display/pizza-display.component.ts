@@ -46,7 +46,8 @@ export class PizzaDisplayComponent {
             ) {
                 return true;
             }
+        } else {
+            return false;
         }
-        return false;
     }
 }

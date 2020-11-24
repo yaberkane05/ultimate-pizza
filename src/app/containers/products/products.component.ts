@@ -15,7 +15,7 @@ export class ProductsComponent implements OnInit {
    }
 
   ngOnInit() {
-    this.pizzaService.getPizzas().subscribe((pizzas: any[]) => {
+    this.pizzaService.getPizzas().subscribe((pizzas: Pizza[]) => {
       this.pizzas = pizzas;
     })
   }

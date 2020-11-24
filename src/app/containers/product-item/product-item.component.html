@@ -1,3 +1,10 @@
 <div class="product-item">
-    <pizza-form [pizza]="pizza" (update)="updatePizza($event)"> </pizza-form>
+    <pizza-form
+        [pizza]="pizza"
+        [toppings]="toppings"
+        (update)="updatePizza($event)"
+        (create)="createPizza($event)"
+        (remove)="removePizza($event)"
+    >
+    </pizza-form>
 </div>
