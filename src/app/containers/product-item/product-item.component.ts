@@ -44,21 +44,11 @@ export class ProductItemComponent implements OnInit {
     }
 
     createPizza(pizza: Pizza) {
-        this.pizzaService.createPizza(pizza).subscribe((res) => {
-            if (res) {
-                // do create success verification
-            } else {
-            }
-        });
+        this.pizzaService.createPizza(pizza).subscribe();
     }
 
     removePizza(pizza: Pizza) {
-        this.pizzaService.removePizza(pizza).subscribe((res) => {
-            if (res) {
-                // do delete success verification
-            } else {
-            }
-        });
+        this.pizzaService.removePizza(pizza).subscribe();
     }
 
     getToppings() {
@@ -67,8 +57,6 @@ export class ProductItemComponent implements OnInit {
                 resToppings.map((topping: Topping) => {
                     this.toppings.push(topping.toString());
                 });
-            } else {
-                //do catch error
             }
         });
     }
