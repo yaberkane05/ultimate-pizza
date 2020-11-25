@@ -59,7 +59,7 @@
     },
     {
       "id": 10,
-      "name": "La Pizza Di Mama",
+      "name": "La Pizza Di Mamma",
       "toppings": [
         "tomato",
         "basil",
@@ -69,7 +69,7 @@
       ]
     },
     {
-      "name": "Vegan",
+      "name": "Vegana",
       "toppings": [
         "tomato",
         "basil",
