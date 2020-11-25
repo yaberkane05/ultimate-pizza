@@ -27,8 +27,7 @@ export class PizzaToppingsComponent {
     }
 
     existsInToppings(topping: string) {
-        if (this.toppings.includes(topping)) return true;
-        else return false;
+        return this.toppings.includes(topping)
     }
 
     existsInValues(topping: string) {

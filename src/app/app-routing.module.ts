@@ -7,7 +7,7 @@ import { PizzaFormComponent } from './components/pizza-form/pizza-form.component
 
 
 const routes: Routes = [
-  { path: '', redirectTo: '', pathMatch: 'full'},
+  { path: '', redirectTo: 'products', pathMatch: 'full'},
   { path: 'new', component: ProductItemComponent},
   { path: 'products', component: ProductsComponent},
   { path: 'products/:id', component: ProductItemComponent}

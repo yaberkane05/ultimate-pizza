@@ -16,6 +16,21 @@ export class PizzaFormComponent implements OnInit {
     @Output() update = new EventEmitter<Pizza>();
     @Output() remove = new EventEmitter<Pizza>();
 
+    /**
+     * classe gérant les actions sur le formulaire de création/modification de pizza
+     * doit assurer que le nom de la pizza n'est pas vide
+     * doit emettre l'action à réaliser à la page (container)
+     * le delete ne peut se faire que sur une pizza existante et demander une confirmation (window.confirm)
+     */
+
+    constructor(private router: Router) {}
+
+    ngOnInit() {
+        if(!this.pizza) {
+            this.pizza = new Pizza();
+        }
+    }
+
     createPizza() {
         if (this.pizza.name) {
             let newPizza: Pizza = new Pizza();
@@ -57,18 +72,5 @@ export class PizzaFormComponent implements OnInit {
     hasRoute(route: string) {
         return this.router.url.includes(route);
     }
-    /**
-     * classe gérant les actions sur le formulaire de création/modification de pizza
-     * doit assurer que le nom de la pizza n'est pas vide
-     * doit emettre l'action à réaliser à la page (container)
-     * le delete ne peut se faire que sur une pizza existante et demander une confirmation (window.confirm)
-     */
 
-    constructor(private router: Router) {}
-
-    ngOnInit() {
-        if(!this.pizza) {
-            this.pizza = new Pizza();
-        }
-    }
 }

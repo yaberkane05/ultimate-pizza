@@ -38,16 +38,6 @@ export class PizzaDisplayComponent {
     }
 
     checkTopping(pizza: Pizza, topName: string) {
-        if (pizza && pizza.hasOwnProperty('toppings')) {
-            if (
-                pizza.toppings.some(
-                    (top) => this.createTopping(top).name === topName
-                )
-            ) {
-                return true;
-            }
-        } else {
-            return false;
-        }
+        return pizza && pizza.hasOwnProperty('toppings') && pizza.toppings.some((top) => top.name === topName);
     }
 }

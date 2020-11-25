@@ -17,8 +17,11 @@ export class PizzasService {
 
     getPizzas(): Observable<Pizza[]> {
         return this.http
-            .get<Pizza[]>(this.url)
-            .pipe(catchError(this.handleError<Pizza[]>('getPizzas', [])));
+            .get<PizzaDto[]>(this.url)
+            .pipe(
+                map((pizzasDto: PizzaDto) => )
+                catchError(this.handleError<Pizza[]>('getPizzas', []))
+            );
     }
 
     getPizzasById(id: number): Observable<Pizza> {

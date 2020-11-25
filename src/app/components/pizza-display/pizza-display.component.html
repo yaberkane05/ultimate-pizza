@@ -2,8 +2,15 @@
     <div class="pizza-display__base">
         <img src="/assets/img/pizza.svg" />
         <img
+            *ngFor="let topping of pizza.toppings"
+            [src]="'/assets/img/toppings/'+toppings.name+'.svg'"
+            [style.zIndex]="0"
+            class="pizza-display__topping"
+            @drop
+        />
+        <img
             *ngIf="checkTopping(pizza, 'tomato')"
-            src="/assets/img/toppings/tomato.svg"
+            [src]="'/assets/img/toppings/'+'tomato'+'.svg'"
             [style.zIndex]="0"
             class="pizza-display__topping"
             @drop
@@ -18,7 +25,7 @@
         <img
             *ngIf="checkTopping(pizza, 'pepperoni')"
             src="/assets/img/toppings/pepperoni.svg"
-            [style.zIndex]="3"
+            style.zIndex="3"
             class="pizza-display__topping"
             @drop
         />
