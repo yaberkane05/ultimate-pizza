@@ -3,7 +3,7 @@ import { Pizza } from 'src/app/models/pizza.model';
 import { PizzasService } from '../../services/pizzas.service';
 import { ToppingsService } from '../../services/toppings.service';
 
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Topping } from 'src/app/models/topping';
 
@@ -44,11 +44,19 @@ export class ProductItemComponent implements OnInit {
     }
 
     createPizza(pizza: Pizza) {
-        this.pizzaService.createPizza(pizza).subscribe();
+        this.pizzaService.createPizza(pizza).subscribe((res) => {
+            if (res === undefined) {
+                window.alert('please verify your pizza before submit');
+            } else this.router.navigate(['/products']);
+        });
     }
 
     removePizza(pizza: Pizza) {
-        this.pizzaService.removePizza(pizza).subscribe();
+        this.pizzaService.removePizza(pizza).subscribe((res) => {
+            if (res === undefined) {
+                window.alert('error : pizza : ' + pizza.name + ' was not removed.');
+            } else this.router.navigate(['/products']);
+        });
     }
 
     getToppings() {
@@ -64,7 +72,8 @@ export class ProductItemComponent implements OnInit {
     constructor(
         public pizzaService: PizzasService,
         public toppingsService: ToppingsService,
-        private Activatedroute: ActivatedRoute
+        private Activatedroute: ActivatedRoute,
+        private router: Router
     ) {}
 
     ngOnInit() {
