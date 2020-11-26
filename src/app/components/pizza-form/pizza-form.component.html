@@ -15,7 +15,10 @@
             </div>
         </label>
 
-        <pizza-display [pizza]="pizza"></pizza-display>
+        <pizza-display
+            *ngIf="pizza"
+            [pizza]="pizza"
+        ></pizza-display>
 
         <label>
             <h4>Select toppings</h4>
@@ -23,7 +26,8 @@
         <div class="pizza-form__list">
             <pizza-toppings
                 [toppings]="toppings"
-                [value]="pizza?.toppings"
+                *ngIf="topSelecs"
+                [value]="topSelecs"
                 (toppingsChange)="updSelecToppings($event)"
             ></pizza-toppings>
         </div>

@@ -1,96 +1,14 @@
 <div class="pizza-display">
     <div class="pizza-display__base">
         <img src="/assets/img/pizza.svg" />
-        <img
-            *ngIf="checkTopping(pizza, 'tomato')"
-            src="/assets/img/toppings/tomato.svg"
-            [style.zIndex]="0"
-            class="pizza-display__topping"
-            @drop
-        />
-        <img
-            *ngIf="checkTopping(pizza, 'sweetcorn')"
-            src="/assets/img/toppings/sweetcorn.svg"
-            [style.zIndex]="2"
-            class="pizza-display__topping"
-            @drop
-        />
-        <img
-            *ngIf="checkTopping(pizza, 'pepperoni')"
-            src="/assets/img/toppings/pepperoni.svg"
-            [style.zIndex]="3"
-            class="pizza-display__topping"
-            @drop
-        />
-        <img
-            *ngIf="checkTopping(pizza, 'anchovy')"
-            src="/assets/img/toppings/anchovy.svg"
-            [style.zIndex]="3"
-            class="pizza-display__topping"
-            @drop
-        />
-        <img
-            *ngIf="checkTopping(pizza, 'bacon')"
-            src="/assets/img/toppings/bacon.svg"
-            [style.zIndex]="3"
-            class="pizza-display__topping"
-            @drop
-        />
-        <img
-            *ngIf="checkTopping(pizza, 'basil')"
-            src="/assets/img/toppings/basil.svg"
-            [style.zIndex]="3"
-            class="pizza-display__topping"
-            @drop
-        />
-        <img
-            *ngIf="checkTopping(pizza, 'chili')"
-            src="/assets/img/toppings/chili.svg"
-            [style.zIndex]="3"
-            class="pizza-display__topping"
-            @drop
-        />
-        <img
-            *ngIf="checkTopping(pizza, 'mozzarella')"
-            src="/assets/img/toppings/mozzarella.svg"
-            [style.zIndex]="3"
-            class="pizza-display__topping"
-            @drop
-        />
-        <img
-            *ngIf="checkTopping(pizza, 'mushroom')"
-            src="/assets/img/toppings/mushroom.svg"
-            [style.zIndex]="3"
-            class="pizza-display__topping"
-            @drop
-        />
-        <img
-            *ngIf="checkTopping(pizza, 'olive')"
-            src="/assets/img/toppings/olive.svg"
-            [style.zIndex]="3"
-            class="pizza-display__topping"
-            @drop
-        />
-        <img
-            *ngIf="checkTopping(pizza, 'onion')"
-            src="/assets/img/toppings/onion.svg"
-            [style.zIndex]="3"
-            class="pizza-display__topping"
-            @drop
-        />
-        <img
-            *ngIf="checkTopping(pizza, 'pepper')"
-            src="/assets/img/toppings/pepper.svg"
-            [style.zIndex]="3"
-            class="pizza-display__topping"
-            @drop
-        />
-        <img
-            *ngIf="checkTopping(pizza, 'prawn')"
-            src="/assets/img/toppings/prawn.svg"
-            [style.zIndex]="3"
-            class="pizza-display__topping"
-            @drop
-        />
+        <ng-container *ngFor="let topping of pizza.toppings">
+            <img
+                *ngIf="checkTopping(pizza, topping.name)"
+                src="/assets/img/toppings/{{ topping.name }}.svg"
+                [style.zIndex]="0"
+                class="pizza-display__topping"
+                @drop
+            />
+        </ng-container>
     </div>
 </div>

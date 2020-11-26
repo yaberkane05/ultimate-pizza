@@ -1,9 +1,8 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { transition, style, animate, trigger } from '@angular/animations';
 import { CommonModule } from '@angular/common';
 
 import { Pizza } from '../../models/pizza.model';
-import { Topping } from '../../models/topping';
 
 export const DROP_ANIMATION = trigger('drop', [
     transition(':enter', [
@@ -28,26 +27,16 @@ export const DROP_ANIMATION = trigger('drop', [
     styleUrls: ['pizza-display.component.scss'],
     templateUrl: './pizza-display.component.html',
 })
-export class PizzaDisplayComponent {
+export class PizzaDisplayComponent implements OnInit {
     @Input() pizza: Pizza;
 
-    createTopping(topping: any) {
-        const newTop: Topping = new Topping();
-        newTop.name = topping;
-        return newTop;
+    ngOnInit() {
+        if (!this.pizza) {
+            this.pizza = new Pizza({});
+        }
     }
 
-    checkTopping(pizza: Pizza, topName: string) {
-        if (pizza && pizza.hasOwnProperty('toppings')) {
-            if (
-                pizza.toppings.some(
-                    (top) => this.createTopping(top).name === topName
-                )
-            ) {
-                return true;
-            }
-        } else {
-            return false;
-        }
+    checkTopping(pizza: Pizza, checkTop: string) {
+        return pizza.toppings.some((top) => top.name === checkTop);
     }
 }

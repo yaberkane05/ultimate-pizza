@@ -1,10 +1,12 @@
 <div class="product-item">
-    <pizza-form
-        [pizza]="pizza"
-        [toppings]="toppings"
-        (update)="updatePizza($event)"
-        (create)="createPizza($event)"
-        (remove)="removePizza($event)"
-    >
-    </pizza-form>
+    <ng-container *ngIf="onNewPage || (pizza && toppings)">
+        <pizza-form
+            [pizza]="pizza"
+            [toppings]="toppings"
+            (update)="updatePizza($event)"
+            (create)="createPizza($event)"
+            (remove)="removePizza($event)"
+        >
+        </pizza-form>
+    </ng-container>
 </div>

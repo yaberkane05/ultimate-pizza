@@ -1,11 +1,13 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Topping } from 'src/app/models/topping';
 
 @Component({
     selector: 'pizza-toppings',
     styleUrls: ['pizza-toppings.component.scss'],
     templateUrl: './pizza-toppings.component.html',
 })
-export class PizzaToppingsComponent {
+export class PizzaToppingsComponent implements OnInit {
     @Input() toppings: string[] = []; //tous les toppings existants
 
     @Output() toppingsChange: EventEmitter<string[]> = new EventEmitter(); //emeteur quand on change les toppings sélectionnés
@@ -14,11 +16,14 @@ export class PizzaToppingsComponent {
 
     constructor() {}
 
-    selectTopping(topping: string) {
+    ngOnInit() {
         if (!this.value) {
             this.value = [];
         }
-        if (this.value.includes(topping)) {
+    }
+
+    selectTopping(topping: string) {
+        if (this.existsInValues(topping)) {
             this.value.splice(this.value.indexOf(topping), 1);
         } else {
             this.value.push(topping);
@@ -26,16 +31,7 @@ export class PizzaToppingsComponent {
         this.toppingsChange.emit(this.value);
     }
 
-    existsInToppings(topping: string) {
-        if (this.toppings.includes(topping)) return true;
-        else return false;
-    }
-
     existsInValues(topping: string) {
-        if (!this.value) {
-            this.value = [];
-        }
-        if (this.value.includes(topping)) return true;
-        else return false;
+        return this.value.includes(topping);
     }
 }

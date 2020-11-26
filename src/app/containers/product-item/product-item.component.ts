@@ -2,6 +2,7 @@ import { Component, Input, OnInit, Output } from '@angular/core';
 import { Pizza } from 'src/app/models/pizza.model';
 import { PizzasService } from '../../services/pizzas.service';
 import { ToppingsService } from '../../services/toppings.service';
+import { CommonModule } from '@angular/common';
 
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
@@ -19,10 +20,32 @@ export class ProductItemComponent implements OnInit {
      * c'est elle qui gère les appels services
      */
 
-    id: any;
-
     @Output() pizza: Pizza;
     @Output() toppings: string[] = [];
+
+    id: any;
+    onNewPage: boolean = false;
+
+    constructor(
+        public pizzaService: PizzasService,
+        public toppingsService: ToppingsService,
+        private Activatedroute: ActivatedRoute,
+        private router: Router
+    ) {}
+
+    ngOnInit() {
+        this.Activatedroute.paramMap.subscribe((params) => {
+            if (params) {
+                if ((this.id = params.get('id'))) {
+                    this.getPizzaByID();
+                }
+            }
+        });
+        if (this.router.url == '/new') {
+            this.onNewPage = true;
+        }
+        this.getToppings();
+    }
 
     getPizzaByID() {
         this.pizzaService.getPizzasById(this.id).subscribe((resPizza) => {
@@ -47,14 +70,18 @@ export class ProductItemComponent implements OnInit {
         this.pizzaService.createPizza(pizza).subscribe((res) => {
             if (res === undefined) {
                 window.alert('please verify your pizza before submit');
-            } else this.router.navigate(['/products']);
+            } else {
+                this.router.navigate(['/products']);
+            }
         });
     }
 
     removePizza(pizza: Pizza) {
         this.pizzaService.removePizza(pizza).subscribe((res) => {
             if (res === undefined) {
-                window.alert('error : pizza : ' + pizza.name + ' was not removed.');
+                window.alert(
+                    'error : pizza : ' + pizza.name + ' was not removed.'
+                );
             } else this.router.navigate(['/products']);
         });
     }
@@ -63,25 +90,9 @@ export class ProductItemComponent implements OnInit {
         this.toppingsService.getToppings().subscribe((resToppings) => {
             if (resToppings) {
                 resToppings.map((topping: Topping) => {
-                    this.toppings.push(topping.toString());
+                    this.toppings.push(topping.name);
                 });
             }
         });
-    }
-
-    constructor(
-        public pizzaService: PizzasService,
-        public toppingsService: ToppingsService,
-        private Activatedroute: ActivatedRoute,
-        private router: Router
-    ) {}
-
-    ngOnInit() {
-        this.Activatedroute.paramMap.subscribe((params) => {
-            if (params) {
-                if ((this.id = params.get('id'))) this.getPizzaByID();
-            }
-        });
-        this.getToppings();
     }
 }

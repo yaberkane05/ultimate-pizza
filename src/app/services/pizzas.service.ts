@@ -6,6 +6,7 @@ import { catchError, map, tap } from 'rxjs/operators';
 
 import { environment } from '../../environments/environment';
 import { Pizza } from '../models/pizza.model';
+import { PizzaDto } from '../models/dto/pizza-dto';
 
 @Injectable({
     providedIn: 'root',
@@ -13,29 +14,35 @@ import { Pizza } from '../models/pizza.model';
 export class PizzasService {
     constructor(private http: HttpClient) {}
 
-    url = 'http://localhost:3000/pizzas/';
-
+    url = environment.baseUrl + '/pizzas/';
     getPizzas(): Observable<Pizza[]> {
-        return this.http
-            .get<Pizza[]>(this.url)
-            .pipe(catchError(this.handleError<Pizza[]>('getPizzas', [])));
+        return this.http.get<PizzaDto[]>(this.url).pipe(
+            map((pizzaDtos: PizzaDto[]) => {
+                return pizzaDtos.map((pizzaDto: PizzaDto) =>
+                    Pizza.fromDto(pizzaDto)
+                );
+            })
+        );
     }
 
     getPizzasById(id: number): Observable<Pizza> {
-        return this.http
-            .get<Pizza>(this.url + id)
-            .pipe(catchError(this.handleError<Pizza>('getPizzaById')));
+        return this.http.get<PizzaDto>(this.url + id).pipe(
+            map((pizzaDto: PizzaDto) => {
+                return Pizza.fromDto(pizzaDto);
+            }),
+            catchError(this.handleError<Pizza>('getPizzaById'))
+        );
     }
 
     createPizza(newPizza: Pizza): Observable<Pizza> {
         return this.http
-            .post<Pizza>(this.url, newPizza)
+            .post<Pizza>(this.url, Pizza.toDto(newPizza))
             .pipe(catchError(this.handleError<Pizza>('createPizza')));
     }
 
     updatePizza(pizza: Pizza): Observable<Pizza> {
         return this.http
-            .patch<Pizza>(this.url + pizza.id, pizza)
+            .patch<Pizza>(this.url + pizza.id, Pizza.toDto(pizza))
             .pipe(catchError(this.handleError<Pizza>('updatePizza')));
     }
 
