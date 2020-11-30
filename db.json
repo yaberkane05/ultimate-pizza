@@ -90,6 +90,17 @@
         "olive",
         "chili"
       ]
+    },
+    {
+      "id": 14,
+      "name": "Red Hot Chili Peppers",
+      "toppings": [
+        "pepper",
+        "pepperoni",
+        "tomato",
+        "chili",
+        "bacon"
+      ]
     }
   ]
 }

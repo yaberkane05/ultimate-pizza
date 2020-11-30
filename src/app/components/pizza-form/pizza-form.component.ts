@@ -2,6 +2,8 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Pizza } from '../../models/pizza.model';
 import { Router } from '@angular/router';
 import { Topping } from 'src/app/models/topping';
+import { FormControl, RequiredValidator } from '@angular/forms';
+import { Validators } from '@angular/forms';
 
 @Component({
     selector: 'pizza-form',
@@ -13,6 +15,8 @@ export class PizzaFormComponent implements OnInit {
     @Input() toppings: string[];
     @Output() topSelecs: string[];
 
+    nameForm = new FormControl('', Validators.required);
+
     @Output() selected = new EventEmitter<Pizza>();
     @Output() create = new EventEmitter<Pizza>();
     @Output() update = new EventEmitter<Pizza>();
@@ -22,17 +26,18 @@ export class PizzaFormComponent implements OnInit {
 
     ngOnInit() {
         if (!this.pizza) {
-            this.pizza = new Pizza({ id: 0, name: 'Nueva', toppings: [] });
+            this.pizza = new Pizza({ id: 0, name: '', toppings: [] });
         }
         this.topSelecs = this.pizza?.toppings.map((topping: Topping) => {
             return topping.name;
         });
+        this.nameForm.setValue(this.pizza.name);
     }
 
     createPizza() {
-        if (this.pizza.name) {
+        if (this.nameForm.value) {
             let newPizza: Pizza = new Pizza({
-                name: this.pizza.name,
+                name: this.nameForm.value,
                 toppings: this.pizza.toppings,
             });
 
@@ -42,11 +47,11 @@ export class PizzaFormComponent implements OnInit {
         }
     }
 
-    updatePizza(id: number, pizzaName: string) {
-        if (pizzaName) {
+    updatePizza() {
+        if (this.nameForm.value) {
             let editedPizza: Pizza = new Pizza({
-                id: id,
-                name: pizzaName,
+                id: this.pizza.id,
+                name: this.nameForm.value,
                 toppings: this.pizza.toppings,
             });
 
@@ -75,6 +80,14 @@ export class PizzaFormComponent implements OnInit {
 
     hasRoute(route: string) {
         return this.router.url.includes(route);
+    }
+
+    pizzaNameIsValid(): boolean {
+        if (this.nameForm.status === 'VALID') {
+            return true;
+        } else {
+            return false;
+        }
     }
     /**
      * classe gérant les actions sur le formulaire de création/modification de pizza
